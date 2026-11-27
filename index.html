@@ -61,9 +61,7 @@
       <div class="about">
         <div class="reveal">
           <p>J'ai commencé par les réseaux et la sécurité (BUT Réseaux &amp; Télécommunications, alternance chez Orange auprès de clients entreprises), puis je me suis tourné vers le cloud et le DevOps : Kubernetes, GitOps, infrastructure as code.</p>
-          <p>Aujourd'hui, je contribue à l'automatisation du déploiement d'infrastructures Telco Cloud au sein d'Orange OINIS. Je suis habitué à travailler avec des équipes réseau et infrastructure, avec rigueur et autonomie.</p>
-          <p>En parallèle, je construis mon propre homelab Proxmox / Kubernetes pour pratiquer sur les technologies les plus demandées.</p>
-        </div>
+          <p>Aujourd'hui, je contribue à l'automatisation du déploiement d'infrastructures Telco Cloud au sein d'Orange OINIS. Je suis habitué à travailler avec des équipes réseau et infrastructure, avec rigueur et autonomie.</p>        </div>
         <ul class="card facts reveal">
           <li><span>Localisation</span><strong>Toulouse, France</strong></li>
           <li><span>Formation</span><strong>Master Cloud, Sécurité &amp; Infrastructure</strong></li>
@@ -135,54 +133,8 @@
     <!-- ======================= PROJETS ======================= -->
     <section id="projets" class="wrap">
       <span class="section-label">Projets</span>
-      <h2>Ce que je construis</h2>
+      <h2>Projets académiques</h2>
 
-      <article class="card project featured reveal">
-        <span class="badge">En cours</span>
-        <h3>Homelab Proxmox / Kubernetes</h3>
-        <p class="meta">Proxmox VE · Kubernetes (kubeadm) · Linux · Sécurité</p>
-        <p>Un serveur physique transformé en plateforme d'apprentissage pour pratiquer sur les technologies les plus demandées, avec l'objectif de tout reconstruire en code.</p>
-        <ul class="points">
-          <li><strong>Virtualisation :</strong> Proxmox VE sur serveur Dell PowerEdge, stockage sur RAID matériel, machines virtuelles clonées depuis un template Ubuntu 24.04 cloud-init.</li>
-          <li><strong>Accès distant sans port ouvert :</strong> réseau privé Tailscale, aucune exposition directe sur Internet.</li>
-          <li><strong>HTTPS valide :</strong> certificat Let's Encrypt par défi DNS-01, avec un jeton API limité à la zone DNS.</li>
-          <li><strong>Kubernetes :</strong> cluster à trois nœuds (un control plane, deux workers) avec containerd, versions figées pour s'entraîner à la montée de version.</li>
-          <li><strong>Sécurité :</strong> moindre privilège, secrets hors dépôt, sauvegardes et snapshots avant toute opération risquée.</li>
-          <li><strong>Prochaines étapes :</strong> MetalLB, Traefik, cert-manager, ArgoCD, observabilité (Prometheus, Grafana, Loki), puis Terraform et Ansible, et une réplique sur AWS (EKS) et Azure (AKS).</li>
-        </ul>
-
-        <figure class="diagram">
-          <svg viewBox="0 0 640 230" role="img" aria-labelledby="dg-t dg-d">
-            <title id="dg-t">Schéma logique du homelab</title>
-            <desc id="dg-d">Un poste de travail accède, par un réseau privé Tailscale, à un hôte Proxmox qui héberge un cluster Kubernetes de trois machines virtuelles.</desc>
-            <g class="box">
-              <rect x="10" y="85" width="120" height="60" rx="10"/>
-              <rect x="170" y="85" width="130" height="60" rx="10"/>
-              <rect x="340" y="14" width="290" height="202" rx="14" class="outer"/>
-              <rect x="360" y="56" width="120" height="68" rx="8"/>
-              <rect x="490" y="56" width="120" height="68" rx="8"/>
-              <rect x="360" y="132" width="250" height="64" rx="8"/>
-            </g>
-            <g class="lines">
-              <path d="M130 115 H170"/>
-              <path d="M300 115 H340"/>
-            </g>
-            <g text-anchor="middle">
-              <text x="70" y="119">Poste de travail</text>
-              <text x="235" y="111">Tailscale</text>
-              <text x="235" y="129" class="sub">réseau privé</text>
-              <text x="485" y="38" class="sub">Hôte Proxmox VE</text>
-              <text x="420" y="94">Control plane</text>
-              <text x="420" y="112" class="sub">VM 1</text>
-              <text x="550" y="94">Worker 1</text>
-              <text x="550" y="112" class="sub">VM 2</text>
-              <text x="485" y="160">Worker 2</text>
-              <text x="485" y="178" class="sub">VM 3 · cluster Kubernetes</text>
-            </g>
-          </svg>
-          <figcaption>Schéma logique, volontairement sans détail réseau.</figcaption>
-        </figure>
-      </article>
 
       <div class="grid three">
         <article class="card project reveal">
