@@ -406,3 +406,9 @@ section { padding: clamp(3rem, 7vw, 5.5rem) 0; }
   body { background: #fff; color: #000; }
   .card, .stat { box-shadow: none; }
 }
+
+/* ---------- Utilitaires (remplacent les styles en ligne) ---------- */
+.spaced { margin-bottom: 1.1rem; }
+.grid.stack { gap: 1rem; }
+.mt { margin-top: 1.2rem; }
+.flush { margin: 0; }

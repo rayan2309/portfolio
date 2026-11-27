@@ -1,0 +1,23 @@
+# Application Argo CD. À appliquer une seule fois sur le cluster :
+#   kubectl apply -f argocd/application.yaml
+# Ce dossier est volontairement hors de k8s/ : l'application ne se gère pas elle-même.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: portfolio
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/rayan2309/portfolio.git
+    targetRevision: main
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: portfolio
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

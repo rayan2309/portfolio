@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: portfolio
+
+resources:
+  - deployment.yaml
+  - service.yaml
+
+images:
+  - name: ghcr.io/rayan2309/portfolio
+    # Mis à jour automatiquement par la CI avec le tag de chaque nouvelle image.
+    newTag: latest
