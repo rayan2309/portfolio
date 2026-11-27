@@ -8,7 +8,8 @@ Site statique (HTML, CSS, un peu de JavaScript), sans dépendance ni étape de b
 | --- | --- |
 | `index.html`, `style.css`, `script.js`, `init.js`, `favicon.svg` | Le site |
 | `Dockerfile`, `nginx.conf` | Image nginx non-root (uid 101, port 8080) avec en-têtes de sécurité et CSP stricte |
-| `k8s/` | Manifestes Kubernetes (kustomize) : Deployment, Service |
+| `k8s/` | Manifestes Kubernetes (kustomize) : Deployment, Service, Ingress |
+| `k8s/ingress.yaml` | Ingress Traefik pour `www.rarroud.com` (entrypoint `websecure`, TLS par défaut de Traefik) |
 | `argocd/application.yaml` | Application Argo CD, à appliquer une fois |
 | `.github/workflows/build.yml` | CI : construit l'image, la publie sur GHCR, met à jour le tag dans `k8s/` |
 
@@ -34,8 +35,10 @@ Mise en place, une seule fois :
 
 Paramètres de l'application : dépôt `https://github.com/rayan2309/portfolio.git`, révision `main`, chemin `k8s`, namespace `portfolio`, synchronisation automatique avec *Prune* et *Self Heal*.
 
-Le Service `portfolio` (port 80) est interne au cluster. Pour l'exposer sur `www`, pointer un nom d'hôte public du tunnel Cloudflare vers `http://portfolio.portfolio.svc:80`.
+Le Service `portfolio` (port 80) est interne au cluster, et l'Ingress `k8s/ingress.yaml` l'expose via Traefik pour le nom d'hôte public `www.rarroud.com` (un seul niveau de sous-domaine : le certificat Universal SSL de Cloudflare ne couvre pas les sous-domaines à deux niveaux).
+
+`cloudflared` tourne hors du cluster et ne résout pas les noms `.svc`. Le Public Hostname `www.rarroud.com` du tunnel doit donc pointer vers Traefik, à l'adresse LoadBalancer de Traefik. En HTTPS, activer `noTLSVerify` côté tunnel : Traefik présente son certificat par défaut, et c'est Cloudflare qui sert le vrai certificat au visiteur.
 
 ## Règles pour ce dépôt
 
-Il est public : il ne doit contenir ni numéro de téléphone, ni jeton (celui du tunnel Cloudflare reste dans un `Secret` Kubernetes créé à la main), ni détail du réseau privé.
+Il est public : il ne doit contenir ni numéro de téléphone, ni jeton (celui du tunnel Cloudflare reste sur le LXC `cloudflared`, hors dépôt), ni détail du réseau privé.

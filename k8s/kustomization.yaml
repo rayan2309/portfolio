@@ -6,6 +6,7 @@ namespace: portfolio
 resources:
   - deployment.yaml
   - service.yaml
+  - ingress.yaml
 
 images:
   - name: ghcr.io/rayan2309/portfolio
