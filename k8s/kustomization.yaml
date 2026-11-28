@@ -11,4 +11,4 @@ resources:
 images:
   - name: ghcr.io/rayan2309/portfolio
     # Mis à jour automatiquement par la CI avec le tag de chaque nouvelle image.
-    newTag: sha-ade3f85
+    newTag: sha-a45948f
