@@ -40,6 +40,9 @@ jobs:
           tags: |
             ${{ env.IMAGE }}:${{ steps.meta.outputs.tag }}
             ${{ env.IMAGE }}:latest
+          # Version injectée dans les liens des assets (voir Dockerfile).
+          build-args: |
+            VERSION=${{ steps.meta.outputs.tag }}
 
       # GitOps : le dépôt reste la source de vérité. On écrit le tag déployé dans Git,
       # et Argo CD détecte le changement. Un push fait avec GITHUB_TOKEN ne relance pas ce workflow.
